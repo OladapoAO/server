@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h3> Making a Random App that uses HTTP GET & POST</h3>
+    <p>The Goal of this app is to build something that gets data from an API, modify it and post it back!</p>
+
+    <p> latitude: <span id="lat"> </span> &deg; <br/>
+        longitude: <span id="long"> </span> &deg; 
+    </p>
+    
+    <a href="settings.html"> Go to the settings Page </a>
+
+    <button id="geolocate"> Add Your Coordinates</button>
+
+ <script>
+        document.getElementById('geolocate').addEventListener('click', event => { if ('geolocation' in navigator) {
+         console.log('geolocation is available');
+         navigator.geolocation.getCurrentPosition(async position =>{
+           // console.log(position);
+           const lat = position.coords.latitude;
+           const long = position.coords.longitude;
+           document.getElementById('lat').textContent = lat;
+           document.getElementById('long').textContent = long;
+
+           const data = {lat, long};
+           const options = {
+               method: 'POST',
+               headers: {
+                   'Content-Type':'application/json'
+               },
+               body: JSON.stringify(data)
+           }
+           const response = await fetch('/api', options);
+           const rdata = await response.json();
+           console.log(rdata);
+
+         })
+         } else {
+          console.log('geolocation is not available');
+         }
+        });
+ </script>
+
+</body>
+</html>
