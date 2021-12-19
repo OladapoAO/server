@@ -1,11 +1,11 @@
 getLocation();
 catchStarwars().then(response => console.log('yay')).catch(error => console.error(error));
+getData();
 
 function getLocation() {
     document.getElementById('geolocate').addEventListener('click', event => { if ('geolocation' in navigator) {
         console.log('geolocation is available');
-        navigator.geolocation.getCurrentPosition(async position =>{
-          // console.log(position);
+        navigator.geolocation.getCurrentPosition(async position => {
           const lat = position.coords.latitude;
           const long = position.coords.longitude;
           document.getElementById('lat').textContent = lat;
@@ -30,11 +30,6 @@ function getLocation() {
        });
 }
 
-
-
-
-
-
 /*The fetch function is asynchronous, which means it returns as JS Promise 
 The promise object  */
 
@@ -48,3 +43,19 @@ async function catchStarwars () {
     document.getElementById('pic').src = URL.createObjectURL(blob);
 }
 
+ async function getData() {
+
+     const response = await fetch('test.csv');
+     const data = await response.text();
+    
+
+     const table = data.split('\n').slice(1);
+     table.forEach ( row => {
+         const columns = row.split(',');
+         const year = columns[0];
+         const temp = columns[1];
+         console.log(year, temp);
+     })
+    
+
+ }
