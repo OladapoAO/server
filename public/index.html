@@ -14,38 +14,14 @@
     <p> latitude: <span id="lat"> </span> &deg; <br/>
         longitude: <span id="long"> </span> &deg; 
     </p>
-    
-    <a href="settings.html"> Go to the settings Page </a>
 
-    <button id="geolocate"> Add Your Coordinates</button>
+    <img src="" id="pic" width="480px" />
 
- <script>
-        document.getElementById('geolocate').addEventListener('click', event => { if ('geolocation' in navigator) {
-         console.log('geolocation is available');
-         navigator.geolocation.getCurrentPosition(async position =>{
-           // console.log(position);
-           const lat = position.coords.latitude;
-           const long = position.coords.longitude;
-           document.getElementById('lat').textContent = lat;
-           document.getElementById('long').textContent = long;
+   <br/> <a href="settings.html"> Go to the settings Page </a>
 
-           const data = {lat, long};
-           const options = {
-               method: 'POST',
-               headers: {
-                   'Content-Type':'application/json'
-               },
-               body: JSON.stringify(data)
-           }
-           const response = await fetch('/api', options);
-           const rdata = await response.json();
-           console.log(rdata);
+   <br/> <button id="geolocate"> Add Your Coordinates</button>
 
-         })
-         } else {
-          console.log('geolocation is not available');
-         }
-        });
+ <script src="home.js">
  </script>
 
 </body>

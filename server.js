@@ -1,9 +1,11 @@
-const express = require('express');
+const express = require('express'); // Basically an Import statement 
 const app = express();
-app.listen(3000, () => console.log('listening at 3000'));
+app.listen(3000, () => console.log('listening at 3000')); // Provide a port number & Call back function
+// A callback function, this provides a callback or response to show the server is listenng 
 
+const folder = 'public'
 
-app.use(express.static('public'));
+app.use(express.static(`${folder}`));  // Express to host static files/
 app.use(express.json({limit:'1mb'}));
 
 var storage = Array();
