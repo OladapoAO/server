@@ -45,7 +45,7 @@ async function catchStarwars () {
 
  async function getData() {
 
-     const response = await fetch('test.csv');
+     const response = await fetch('test.csv'); // grabbing data from a csv file using the fetch api
      const data = await response.text();
     
 

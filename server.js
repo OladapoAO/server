@@ -6,12 +6,12 @@ app.listen(3000, () => console.log('listening at 3000')); // Provide a port numb
 const folder = 'public'
 
 app.use(express.static(`${folder}`));  // Express to host static files/
-app.use(express.json({limit:'1mb'}));
+app.use(express.json({limit:'1mb'}));  // Allows server to understand incoming data as JSON
 
 var storage = Array();
 var name = 'Daps';
 
-app.post('/api', (request, response) =>{
+app.post('/api', (request, response) => {
     console.log(`i got a request! , thanks ${name}`)
     // console.log(request.body);
 
